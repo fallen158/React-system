@@ -10,6 +10,8 @@ class Home extends Component {
         <Link to="/user/list">用户列表</Link>
         <br />
         <Link to="/user/add/1">添加用户</Link>
+        <br />
+        <Link to="/book/add">添加图书</Link>
       </HomeLayout>
     );
   }
