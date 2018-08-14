@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import HomeLayout from "./HomeLayout";
 class UserAdd extends Component {
   constructor() {
     super();
@@ -48,7 +49,7 @@ class UserAdd extends Component {
       .then(res => {
         if (res.id) {
           alert("添加用户成功");
-          this.props.history.push('/user/list')
+          this.props.history.push("/user/list");
           return;
         } else {
           alert("添加失败");
@@ -99,48 +100,43 @@ class UserAdd extends Component {
       form: { name, age, gender }
     } = this.state;
     return (
-      <div>
-        <header>
-          <h1>添加用户</h1>
-        </header>
-        <main>
-          <form onSubmit={e => this.handleSumbit(e)}>
-            <div className="row">
-              <label>用户名：</label>
-              <input
-                type="text"
-                value={name.value}
-                onChange={e => this.handleValueChange("name", e.target.value)}
-              />
-              {!name.vaild && <span>{name.error}</span>}
-            </div>
-            <div className="row">
-              <label>年龄：</label>
-              <input
-                type="number"
-                value={age.value}
-                onChange={e =>
-                  this.handleValueChange("age", e.target.value, "number")
-                }
-              />
-              {!age.vaild && <span>{age.error}</span>}
-            </div>
-            <div className="row">
-              <label>性别：</label>
-              <select
-                value={gender.value}
-                onChange={e => this.handleValueChange("gender", e.target.value)}
-              >
-                <option value="">请选择</option>
-                <option value="male">男</option>
-                <option value="female">女</option>
-              </select>
-              {!gender.vaild && <span>{gender.error}</span>}
-            </div>
-            <input type="submit" value="提交" />
-          </form>
-        </main>
-      </div>
+      <HomeLayout title="添加用户">
+        <form onSubmit={e => this.handleSumbit(e)}>
+          <div className="row">
+            <label>用户名：</label>
+            <input
+              type="text"
+              value={name.value}
+              onChange={e => this.handleValueChange("name", e.target.value)}
+            />
+            {!name.vaild && <span>{name.error}</span>}
+          </div>
+          <div className="row">
+            <label>年龄：</label>
+            <input
+              type="number"
+              value={age.value}
+              onChange={e =>
+                this.handleValueChange("age", e.target.value, "number")
+              }
+            />
+            {!age.vaild && <span>{age.error}</span>}
+          </div>
+          <div className="row">
+            <label>性别：</label>
+            <select
+              value={gender.value}
+              onChange={e => this.handleValueChange("gender", e.target.value)}
+            >
+              <option value="">请选择</option>
+              <option value="male">男</option>
+              <option value="female">女</option>
+            </select>
+            {!gender.vaild && <span>{gender.error}</span>}
+          </div>
+          <input type="submit" value="提交" />
+        </form>
+      </HomeLayout>
     );
   }
 }
