@@ -16,6 +16,30 @@ class UserList extends Component {
         });
       });
   }
+  handleEdit(user) {
+    this.props.history.push(`/user/add/${user.id}`)
+  }
+  handleDel(user) {
+    const confirmed = window.confirm(`确定要删除用户 ${user.name} 吗？`);
+    if (confirmed) {
+      fetch("http://localhost:3000/user/" + user.id, {
+        method: "delete"
+      })
+        .then(res => res.json())
+        .then(res => {
+          console.log(
+            this.setState({
+              userList: this.state.userList.filter(item => item.id !== user.id)
+            })
+          );
+          alert("删除用户成功");
+        })
+        .catch(err => {
+          console.error(err);
+          alert("删除用户失败");
+        });
+    }
+  }
   render() {
     return (
       <HomeLayout title="用户列表">
@@ -36,6 +60,21 @@ class UserList extends Component {
                   <td>{user.name}</td>
                   <td>{user.gender}</td>
                   <td>{user.age}</td>
+                  <td>
+                    <a
+                      href="javascript:void(0)"
+                      onClick={() => this.handleEdit(user)}
+                    >
+                      编辑
+                    </a>
+                    &nbsp;
+                    <a
+                      href="javascript:void(0)"
+                      onClick={() => this.handleDel(user)}
+                    >
+                      删除
+                    </a>
+                  </td>
                 </tr>
               );
             })}

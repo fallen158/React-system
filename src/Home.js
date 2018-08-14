@@ -9,7 +9,7 @@ class Home extends Component {
       <HomeLayout title="Welcome">
         <Link to="/user/list">用户列表</Link>
         <br />
-        <Link to="/user/add">添加用户</Link>
+        <Link to="/user/add/1">添加用户</Link>
       </HomeLayout>
     );
   }

@@ -59,6 +59,35 @@ class UserAdd extends Component {
         console.log(err);
       });
   }
+  componentWillMount() {
+    let userId = this.props.match.params.id;
+    if (userId) {
+      fetch("http://localhost:3000/user")
+        .then(res => res.json())
+        .then(res => {
+          res.map(item => {
+            let newUserId = +userId;
+            if (item.id === newUserId) {
+              const { name, age, gender } = item;
+              this.setState({
+                form: {
+                  name: {
+                    value: name
+                  },
+                  age: {
+                    value: age
+                  },
+                  gender: {
+                    value: gender
+                  }
+                }
+              });
+            }
+          });
+        })
+        .catch(err => console.log(err));
+    }
+  }
   handleValueChange(field, value, type = "string") {
     if (type === "number") {
       value = +value;

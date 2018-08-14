@@ -10,7 +10,7 @@ export default class routers extends Component {
       <Router>
         <div>
           <Route exact path="/" component={HomePage} />
-          <Route path="/user/add" component={UserAddPage}/>
+          <Route path="/user/add/:id" component={UserAddPage}/>
           <Route path="/user/list" component={UserList}/>
         </div>
       </Router>
